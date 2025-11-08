@@ -1,4 +1,0 @@
-pandas numpy scikit-learn
-opencv-python-headless
-transformers torch torchvision gensim openai nltk spacy
-matplotlib seaborn tqdm
