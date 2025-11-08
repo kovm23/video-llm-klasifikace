@@ -1,0 +1,14 @@
+# Ignoruj všechna data
+data/
+
+# Ignoruj cache a dočasné soubory Pythonu
+__pycache__/
+*.pyc
+
+# Ignoruj specifické soubory Colabu
+.config/
+sample_data/
+
+# Ignoruj soubory s lokálním nastavením (pokud by vznikly)
+.env
+*.local
