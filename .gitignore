@@ -12,3 +12,4 @@ sample_data/
 # Ignoruj soubory s lokálním nastavením (pokud by vznikly)
 .env
 *.local
+.DS_Store
