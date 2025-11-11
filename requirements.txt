@@ -1,27 +1,26 @@
 # --- Základní Data Science & Utility ---
-pandas         # Pro DataFrames (správa splitů, výsledků)
-numpy          # Pro numerické operace (agregace vnoření)
-scikit-learn   # Pro klasifikátory (LogReg, SVM), PCA, GroupShuffleSplit, TF-IDF [cite: 986, 1955, 2953]
-tqdm           # Pro progress bary (při generování popisů)
-matplotlib     # Pro základní grafy (např. AOPC křivky) [cite: 3242]
-seaborn        # Pro hezčí vizualizace (matice záměn, heatmapy) [cite: 3030]
+numpy
+pandas
+scikit-learn
+tqdm
+matplotlib
+seaborn
 
-# --- Zpracování Videa a Obrázků (Modul 1 & Benchmark) ---
-opencv-python-headless  # Pro extrakci snímků z videí (cv2)
-torch                   # Základ pro PyTorch (benchmark, transformers)
-torchvision             # Modely a transformace pro PyTorch
-pytorchvideo            # Pro 3D-CNN benchmark (např. I3D), jak je v plánu
+# --- Zpracování Videa a Obrázků ---
+opencv-python-headless
+torch
+torchvision
+pytorchvideo
 
-# --- Zpracování Jazyka (NLP - Modul 3 & 4) ---
-nltk           # Základní NLP nástroje (tokenizace, stopwords)
-spacy          # Pro pokročilý NLP (POS tagging, extrakce frází)
-scispaCy       # Speciální model pro spaCy, zmíněný v AY (2025) pro extrakci frází [cite: 685]
-gensim         # Pro NLP, např. alternativní TF-IDF nebo trénink vlastních vnoření
+# --- Zpracování Jazyka (NLP) ---
+spacy==3.6.1
+scispacy==0.5.3
 
-# --- LLM & Vnoření (Modul 2 & 3) ---
-openai                 # Pro přístup k API (GPT-4o, text-embedding-3-small) [cite: 458, 460, 503]
-transformers           # Pro lokální modely (Qwen-VL) a benchmark (VideoMAE)
-sentence-transformers  # Efektivní alternativa pro generování vnoření (embeddings)
+# --- LLM, Vnoření & XAI ---
+openai
+sentence-transformers
+transformers
+captum
 
-# --- Vysvětlitelnost (XAI - Modul 4) ---
-captum         # Pro XAI na PyTorch modelech (benchmark 3D-CNN)
+# --- Nástroje pro lokální vývoj ---
+python-dotenv

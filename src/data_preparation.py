@@ -54,7 +54,7 @@ def create_mini_dataset(base_data_path, selected_classes, full_dataset_folder="U
 def create_group_splits(base_data_path, mini_dataset_folder="UCF101_mini", test_size=0.2, random_state=42):
     """
     Načte videa z 'UCF101_mini', rozdělí je pomocí GroupShuffleSplit
-    a uloží 'train_split.csv' a 'test_split.csv' do složky 'data'.
+    a uloží RELATIVNÍ CESTY do 'train_split.csv' a 'test_split.csv'.
     """
     print(f"\n--- Spouštím create_group_splits ---")
     mini_dataset_path = os.path.join(base_data_path, mini_dataset_folder)
@@ -66,13 +66,22 @@ def create_group_splits(base_data_path, mini_dataset_folder="UCF101_mini", test_
         class_path = os.path.join(mini_dataset_path, class_name)
         if os.path.isdir(class_path):
             for video_name in os.listdir(class_path):
-                video_path = os.path.join(class_path, video_name)
+                
+                # Toto je plná, absolutní cesta (např. /Users/kovy/.../video.avi)
+                absolute_video_path = os.path.join(class_path, video_name)
+                
+                # --- NOVÁ ZMĚNA ZDE ---
+                # Vytvoříme relativní cestu (např. UCF101_mini/ApplyEyeMakeup/video.avi)
+                # 'base_data_path' je např. /Users/kovy/.../data
+                relative_video_path = os.path.relpath(absolute_video_path, base_data_path)
+                # ---------------------
+                
                 match = re.search(r'_g(\d+)_', video_name)
                 
                 if match:
                     group_id = f"g{match.group(1)}"
                     video_files_data.append({
-                        "video_path": video_path,
+                        "relative_path": relative_video_path, # <-- ULOŽÍME RELATIVNÍ
                         "class_name": class_name,
                         "group_id": group_id
                     })
@@ -85,6 +94,8 @@ def create_group_splits(base_data_path, mini_dataset_folder="UCF101_mini", test_
         return
 
     print(f"Nalezeno celkem {len(df_videos)} videí.")
+    print("Ukázka uložených cest:")
+    print(df_videos.head()) # Zkontrolujte, že cesty jsou relativní
 
     # Rozdělení
     splitter = GroupShuffleSplit(n_splits=1, test_size=test_size, random_state=random_state)
